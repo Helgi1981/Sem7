@@ -11,11 +11,14 @@
 // “World” => W r l d
 // “Hello world!” => H l l w r l d
 
-Console.WriteLine("Введите строку из латинских букв: ");
-string text = Console.ReadLine();
-Console.WriteLine();
-
-PrintConsonants(text);
+void CheckPrintConsonants(string str, int index)
+{
+    string vowels = "aeiouy";
+    if (char.IsAsciiLetter(str[index]) && !vowels.Contains(str[index]))
+    {
+        Console.Write($"{str[index]}");
+    }
+}
 
 void PrintConsonants(string str, int index = 0)
 {
@@ -23,11 +26,11 @@ void PrintConsonants(string str, int index = 0)
     {
         return;
     }
-
-    string vowels = "aeiouy";
-    if (char.IsAsciiLetter(str[index]) && !vowels.Contains(str[index]))
-    {
-        Console.Write($"{str[index]}");
-    }
+    CheckPrintConsonants(str, index);
     PrintConsonants(str, index + 1);
 }
+
+Console.WriteLine("Введите строку из латинских букв: ");
+string text = Console.ReadLine();
+Console.WriteLine();
+PrintConsonants(text);
